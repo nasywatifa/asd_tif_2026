@@ -73,6 +73,7 @@ public class DoublyLinkedList implements LinkedList {
 
     public void deleteFirst() {
         Node2P temp = head;
+
         if (!isEmpty()) {
             if (head == tail) {
                 head = tail = null;
@@ -88,6 +89,7 @@ public class DoublyLinkedList implements LinkedList {
 
     public void deleteLast() {
         Node2P temp = tail;
+
         if (!isEmpty()) {
             if (tail == head) {
                 head = tail = null;
@@ -103,10 +105,12 @@ public class DoublyLinkedList implements LinkedList {
 
     public void deleteAfter(int index) {
         Node2P temp = head;
+
         if (index < size - 2) {
             for (int i = 0; i < index; i++) {
                 temp = temp.next;
             }
+
             temp.next.next.prev = temp;
             temp.next = temp.next.next;
             size--;
@@ -119,6 +123,7 @@ public class DoublyLinkedList implements LinkedList {
 
     public void print() {
         Node2P currentNode = head;
+
         for (int i = 0; i < size; i++) {
             System.out.println(currentNode.data);
             currentNode = currentNode.next;
@@ -128,7 +133,9 @@ public class DoublyLinkedList implements LinkedList {
     @Override
     public Object get(int index) {
         if (index < 0 || index >= size) {
-            return null;
+            throw new IndexOutOfBoundsException(
+                "Index: " + index + ", Size: " + size
+            );
         }
 
         Node2P temp = head;
